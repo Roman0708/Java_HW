@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Java_HW_4 {
     public static void main(String[] args) {
         FileWriter writer = null;
-        // FileReader reader = null;
+        FileReader reader = null;
         String answer = "";
 
         // 1
@@ -35,44 +35,78 @@ public class Java_HW_4 {
         // 2
 
         try {
-            // FileReader fr = new FileReader("List.txt");
-            String text = "";
 
             
-            BufferedReader reader = new BufferedReader(new FileReader("List.txt"));
-            String line = reader.readLine();
+            
             
             // create a buffer for all rows from file
-            ArrayList<String> buffer = new ArrayList<>();
-            while (line != null) {
+            // ArrayList<String> buffer = new ArrayList<>();
+            // BufferedReader br = new BufferedReader(new FileReader("List.txt"));
+            
+            // ArrayList<String> list = new ArrayList<>();
+            // int counter = 0;
+            // String line = br.readLine();
+            // while (line != null) {
 
-                //Fill the buffer
 
-                buffer.add(line);
-                line = reader.readLine();
+            //     String[] parts = line.split(" "); //
+            //     list.add(parts.toString()); //
+            //     //Fill the buffer
+
+            //     buffer.add(line);
+            //     line = br.readLine();
+            //     counter++;
+            // }
+            
+            // System.out.println(list);
+            
+            // for (String s : buffer) {
+
+            //     //Loop the buffer and parse each row data, split by space
+
+            //     String[] parts = s.split(" ");
+
+            //     System.out.println(Arrays.toString(parts));
+
+            // }
+
+            // System.out.println(buffer);
+
+
+            System.out.println();
+            FileReader fr = new FileReader("List.txt");
+            String text = "";
+            while (fr.ready()) {
+                text += (char)fr.read();
+            }
+            System.out.println(text);
+
+            System.out.println("-----------");
+            String[] parts = text.split("\r\n");
+            System.out.println(Arrays.toString(parts));
+
+            
+
+
+
+
+            ArrayList<String> list = new ArrayList<>();
+
+            for (String temp: parts) {
+                list.add(temp);
             }
 
-            for (String s : buffer) {
+            System.out.println(list.toString());
 
-                //Loop the buffer and parse each row data, split by whitespace
-                //Create a user
-
-                String[] parts = s.split(" ");
-
-                User u = new User();
-
-                u.lastName = parts[0];
-
-                System.out.println(Arrays.toString(parts));
-                System.out.println(u);
-                
+            for (int i = 0; i < list.size(); i++) {
+                String str = parts[i].split(" ").toString();
+                list.set(i, str); 
             }
 
-            // System.out.println(text);
-            // System.out.println("-----------");
-            // String[] parts = text.split("\n");
+            System.out.println(list.toString());
 
-            // System.out.print(Arrays.toString(parts));
+            // // System.out.print(Arrays.toString(parts));
+            // br.close();
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -80,14 +114,4 @@ public class Java_HW_4 {
 
     }
 
-    
-}
-
-class User {
-    public String lastName;
-
-    @Override
-    public String toString() {
-        return lastName;
-    }
 }
