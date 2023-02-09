@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Java_HW_4 {
